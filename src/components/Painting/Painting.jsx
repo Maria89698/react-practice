@@ -1,26 +1,23 @@
-import painting from "../../painting.json";
+import PropTypes from 'prop-types';
 
-const options = painting[0]
-
-// false && true //false
-// false || true // true
-// !
-// умова ? true : false
-
-export function Painting() {
+export const Painting = ({id, title, url, quantity, price, author}) => {
     return (
-        <ul>
-            {painting.map(option =>
-                    <li>
-                        <img src={option.url} alt="" width="480" />
-                        <h2>{option.itle}</h2>
-                        <p>Автор: <a href={option.autor.url}>{option.autor.url}</a>{option.autor.url}</p>
-                        <p>Ціна: {option.price} грн</p>
-                        <p>Доступність: {option.quantity < 5 ? 'закінчується' : `є в наявності ${option.quantity}`}</p>
-                        <button type="button">Додати в кошик</button>
-                    </li>
-                )
-            }
-        </ul>
+        <li>
+            <img src={url} alt="" width="480" />
+            <h2>{title}</h2>
+            <p>Автор: <a href={author.url}>{author.url}</a>{author.tag}</p>
+            <p>Ціна: {price} грн</p>props
+            <p>Доступність: {quantity < 5 ? 'закінчується' : `є в наявності ${quantity}`}</p>
+            <button type="button">Додати в кошик</button>
+        </li>
     )
+}
+
+Painting.propTypes = {
+    id: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
+    quantity: PropTypes.number,
+    price: PropTypes.string,
+    author: PropTypes.object
 }
