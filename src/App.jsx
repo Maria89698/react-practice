@@ -1,4 +1,3 @@
-import './App.css';
 import { Header } from 'components/Header';
 // import painting from './components/Painting/paintingJSON.json'
 // import { PaintingList } from "./components/PaintingList/PaintingList";
