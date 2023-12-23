@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Recipe } from "./Recipe";
+// import { Recipe } from "./Recipe";
 
 export function RecipeInfo({name, time, servings, calories, image, difficulty, iconTime: IconTime, iconCalories: IconCalories, iconPie: IconPie}) {
     return (
