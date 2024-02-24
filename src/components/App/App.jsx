@@ -1,51 +1,120 @@
+import { Component } from 'react';
+import './App.css';
+import styles from './App.module.css'
 // import { Header } from 'components/Header';
 // import painting from './components/Painting/paintingJSON.json'
 // import { PaintingList } from "./components/PaintingList/PaintingList";
 // import { Recipe } from "./components/recipe/Recipe";
 // import recipies from "./recipies.json";
-import './App.css';
-import styles from './App.module.css'
 // import { ColorPicker } from 'components/ColorPicker/ColorPicker';
 // import {colorPickerOptions} from '../../colorOptions';
 // import { Alert } from 'components/ColorPicker/Alert/Alert';
 // import { Container, Title } from "./App.styled";
 // import { GlobalStyle } from 'GlobalStyle.styled';
+// import { DropDownMenu } from 'components/DropDownMenu/DropDownMenu';
 
 
 // const box = {color: 'red', fontSize: '18', margin: '50px, 50px'};
 
-export function App() {
-  console.log(styles);
-  return (
-    <>
-      {/* <Container>
-        <Title>Title</Title>
-      </Container> */}
+export class App extends Component {
+  state = {
+    name: '',
+    tel: '',
+    level: '',
+    lisence: false
+  }
 
-      {/* <Header>
-        <nav>Навігація</nav>
-      </Header> */}
+  handleChange = (e) =>{
+    this.setState({
+      name: e.currentTarget.value
+    })
+  }
 
-      {/* <PaintingList painting={painting}/> */}
+  handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log(e.currentTarget.elements.name.value);
+  }
 
-      {/* <Recipe recipe={recipies}/> */}
+  render(){
+    return (
+        <div>
+          {/* <Container>
+            <Title>Title</Title>
+          </Container> */}
 
-      {/* <div style={box}>Стилізований бокс</div>
-      <p className="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Sapiente praesentium soluta pariatur ipsa quos ipsam aliquid quidem nulla sunt itaque.
-      </p>
-      <p className={styles.text-module}>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Sapiente praesentium soluta pariatur ipsa quos ipsam aliquid quidem nulla sunt itaque.
-      </p> */}
+          {/* <Header>
+            <nav>Навігація</nav>
+          </Header> */}
 
-      {/* <ColorPicker options={colorPickerOptions}/> */}
+          {/* <PaintingList painting={painting}/> */}
 
-      {/* <Alert text="Останнє попередження!"/>
-      <Alert text="Ура! Все ок!"/>
-      <Alert text="О жах - все пропало!"/> */}
-      
-      {/* <GlobalStyle/> */}
-    </>
-    
-  );
+          {/* <Recipe recipe={recipies}/> */}
+
+          {/* <div style={box}>Стилізований бокс</div>
+          <p className="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Sapiente praesentium soluta pariatur ipsa quos ipsam aliquid quidem nulla sunt itaque.
+          </p>
+          <p className={styles.text-module}>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Sapiente praesentium soluta pariatur ipsa quos ipsam aliquid quidem nulla sunt itaque.
+          </p> */}
+
+          {/* <ColorPicker options={colorPickerOptions}/> */}
+
+          {/* <Alert text="Останнє попередження!"/>
+          <Alert text="Ура! Все ок!"/>
+          <Alert text="О жах - все пропало!"/> */}
+          
+          {/* <GlobalStyle/> */}
+          {/* <DropDownMenu/> */}
+
+          
+          <form onSubmit={this.handleSubmit}>
+            <label>Name
+              <input type="text" name='name' value={this.state.name} onChange={this.handleChange}/>
+            </label>
+            <br />
+            <label>Telefone number
+              <input type="tel" name='tel' value={this.state.tel} onChange={this.handleChange}/>
+            </label>
+            <label>
+              junior
+              <input
+                type="text"
+                name='junior'
+                value={this.state.level}
+                checked={this.state.level === 'junior'}
+                onChange={this.handleRadioChange}/>
+            </label>
+            <label>
+              middle
+              <input
+                type="text"
+                name='middle'
+                value={this.state.level}
+                checked={this.state.level === 'middle'}
+                onChange={this.handleRadioChange}/>
+            </label>
+            <label>
+              senjor
+              <input
+                type="text"
+                name='senjor'
+                value={this.state.level}
+                checked={this.state.level === 'senjor'}
+                onChange={this.handleRadioChange}/>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                checked={this.state.lisence}
+                name='lisence'
+                onChange={this.handleCheckboxChange}/>
+            </label>
+          </form>
+        </div>
+        
+      )
+  }
+  
 }
