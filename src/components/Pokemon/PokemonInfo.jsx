@@ -3,28 +3,54 @@ import { PureComponent } from "react";
 export class PokemonInfo extends PureComponent{
     state = {
         pokemon: '',
-        isLoading: false
+        isLoading: false,
+        error: null,
+        status: 'idle'
     }
 
-    componentDidUpdate(prevProps, prexState) {
+    componentDidUpdate(prevProps, prevState) {
         if (prevProps.pokemonName !== this.props.pokemonName) {
-          this.setState({isLoading: true})
+          this.setState({status: 'pending', pokemon: null})
           fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.pokemonName}`)
-            .then(res=>res.json())
-                .then(pokemon => {
-                    this.setState({pokemon})
-                    this.setState({isLoading: false})
-                })
+            .then(res=>{
+                if (!res.ok) {
+                    return Promise.reject(new Error (`Покемона з іменем ${this.props.pokemonName} не знайдено!`))
+                }
+                return res.json()
+            })
+            .then(pokemon => this.setState({ pokemon, error: null, status: 'resolved' }))
+            .catch(error => this.setState({ error, status: 'rejected' }))
         }
     }
 
     render(){
-        return(
-            <div>
-                {/* {{isLoading}&&<p>Loading...</p>} */}
-                <h2>Pokemon Name</h2>
-                <img src={this.state.pokemon.sprites.other['official-artwork'].front_default} alt="" />
-            </div>
-        )
+        const {error, status} = this.state
+
+        if (status === 'idle') {
+            return <p>Введіть ім'я покемона</p>
+        }
+        if (status === 'pending') {
+            return <div>Loading...</div>
+        }
+        if (status === 'rejected') {
+            return <div>{error.message}</div>
+        }
+        if (status === 'resolved') {
+            return <div></div>
+        }
+
+        // return(
+        //     // <div>
+        //     //     {!isLoading && !pokemon && !error && <p>Введіть ім'я покемона</p>}
+        //     //     {{isLoading} && <div>Loading...</div>}
+        //     //     {error && <div>Покемона з іменем {pokemon} не знайдено!</div>}
+        //     //     {pokemon && <div>
+        //     //             <h2>{pokemon.name}</h2>
+        //     //             <img src={pokemon.sprites.other['official-artwork'].front_default} alt="" />
+        //     //         </div>}
+                
+        //     //     <img src={this.state.pokemon.sprites.other['official-artwork'].front_default} alt="" />
+        //     // </div>
+        // )
     }
 }

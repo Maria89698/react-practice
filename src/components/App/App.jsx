@@ -1,6 +1,6 @@
-import { Component } from 'react';
+// import { Component } from 'react';
 import './App.css';
-import styles from './App.module.css'
+// import styles from './App.module.css'
 import { PureComponent } from 'react';
 // import { Header } from 'components/Header';
 // import painting from './components/Painting/paintingJSON.json'
@@ -122,24 +122,50 @@ import { PureComponent } from 'react';
 
 
 
-import { PokemonForm } from 'components/Pokemon/PokemonForm';
-import {PokemonInfo} from 'components/Pokemon/PokemonInfo';
+// import { PokemonForm } from 'components/Pokemon/PokemonForm';
+// import {PokemonInfo} from 'components/Pokemon/PokemonInfo';
 
-export class App extends PureComponent {
-  state = {
-    pokemon: ''
-  }
+// export class App extends PureComponent {
+//   state = {
+//     pokemon: ''
+//   }
 
   
 
-  async componentDidMount() {
-    try {
+//   async componentDidMount() {
+//     try {
       
-    } catch (error) {
+//     } catch (error) {
       
-    }
-    fetch(`https://pokeapi.co/api/v2/pokemon/pikachu`)
-      .then(res=>res.json())
+//     }
+//     fetch(`https://pokeapi.co/api/v2/pokemon/pikachu`)
+//       .then(res=>res.json())
+//   }
+
+//   onNameChange = (name) => {
+//     this.setState({
+//       pokemon: name
+//     })
+//   }
+
+//   render(){
+//     return(
+//       <div style={{ maxWidth: 1170,  }}>
+//         <PokemonForm onNameChange={this.onNameChange}/>
+//       </div>
+//     )
+//   }
+// }
+
+
+
+import { GifSearch } from '../GIFs/GifSearch'
+import { GifList } from "../GIFs/GifList";
+
+export class App extends PureComponent {
+  state = {
+    query: '',
+    gifs: null
   }
 
   onNameChange = (name) => {
@@ -150,9 +176,10 @@ export class App extends PureComponent {
 
   render(){
     return(
-      <div style={{ maxWidth: 1170,  }}>
-        <PokemonForm onNameChange={this.onNameChange}/>
-      </div>
+      <>
+        <GifSearch></GifSearch>
+        <GifList></GifList>
+      </>
     )
   }
 }
