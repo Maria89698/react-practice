@@ -1,7 +1,7 @@
 // import { Component } from 'react';
 import './App.css';
 // import styles from './App.module.css'
-import { PureComponent } from 'react';
+import { Component, PureComponent } from 'react';
 // import { Header } from 'components/Header';
 // import painting from './components/Painting/paintingJSON.json'
 // import { PaintingList } from "./components/PaintingList/PaintingList";
@@ -11,7 +11,7 @@ import { PureComponent } from 'react';
 // import {colorPickerOptions} from '../../colorOptions';
 // import { Alert } from 'components/ColorPicker/Alert/Alert';
 // import { Container, Title } from "./App.styled";
-// import { GlobalStyle } from 'GlobalStyle.styled';
+import { GlobalStyle } from 'GlobalStyle.styled';
 // import { DropDownMenu } from 'components/DropDownMenu/DropDownMenu';
 
 
@@ -159,26 +159,47 @@ import { PureComponent } from 'react';
 
 
 
-import { GifSearch } from '../GIFs/GifSearch'
-import { GifList } from "../GIFs/GifList";
+// import { GifSearch } from '../GIFs/GifSearch'
+// import { GifList } from "../GIFs/GifList";
 
-export class App extends PureComponent {
-  state = {
-    query: '',
-    gifs: null
-  }
+// export class App extends PureComponent {
+//   state = {
+//     query: '',
+//     gifs: null
+//   }
 
-  onNameChange = (name) => {
-    this.setState({
-      pokemon: name
-    })
-  }
+//   onNameChange = (name) => {
+//     this.setState({
+//       pokemon: name
+//     })
+//   }
 
-  render(){
-    return(
+//   render(){
+//     return(
+//       <>
+//         <GifSearch></GifSearch>
+//         <GifList></GifList>
+//       </>
+//     )
+//   }
+// }
+
+
+import { Form } from "../SignupForm/Form";
+import { Clock } from "../Clock";
+
+export class App extends Component {
+  render() {
+    return (
       <>
-        <GifSearch></GifSearch>
-        <GifList></GifList>
+        <Form/>
+
+        <Clock/>
+        <Clock/>
+        <Clock/>
+        <Clock/>
+
+        <GlobalStyle/>
       </>
     )
   }
